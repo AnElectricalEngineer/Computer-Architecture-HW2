@@ -6,6 +6,7 @@
 using namespace std;
 using std::vector;
 
+//	Define what a tag consists of
 typedef struct tag_line {
     int tag;
     int line;
@@ -13,6 +14,8 @@ typedef struct tag_line {
     bool found;
 }tag_line;
 
+
+//	Define an individual line in a Cache
 class cacheLine {
 public:
     cacheLine(int max_lru_value);
@@ -52,6 +55,7 @@ private:
     vector <cacheLine> table;
 };
 
+// Define a cache level
 class cache {
 public:
     cache(int num_ways, int size, int block_size);
@@ -64,7 +68,7 @@ public:
     bool find_if_dirty(tag_line victim);
     int getAccessStat();
     double getMissRateStat();
-    int find_way(long int tag , long int line);
+    int find_way(long int tag , long int set);
     bool snoop(tag_line victim);
    
 protected:
@@ -79,6 +83,7 @@ protected:
     int access_time_;
 };
 
+//	Define the entire cache
 class theCache {
 public:
     theCache(int block_size, int l1_size, int l2_size, int l1_ways, int l2_ways, bool writeAlloc);
